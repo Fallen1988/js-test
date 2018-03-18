@@ -24,18 +24,15 @@ function showUser(user) {
                 <p>ID: ${user.id}<p>
                 <p>${user.name}</p>
                 <p>${user.email}</p>
-                <p>Address: ${user.address.street}</p>
-                <p>         ${user.address.suite}</p>
-                <p>         ${user.address.city}</p>
-                <p>         ${user.address.zipcode}</p>
+                <p>Address: ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}.</p>
+                <p>Phone: ${user.phone}</p>
+                <p>Web-site: ${user.website}</p>
             </li>
             `;
-
     document.getElementById("app").innerHTML = html;
 }
 
 function showComments(data) {
-    console.log(data);
     let html = '';
     const commentsForPost = data.forEach(oneComment => {
         html += `
@@ -47,7 +44,6 @@ function showComments(data) {
                 </li>
             `;
     });
-    console.log(html);
     document.getElementById("app").insertAdjacentHTML('beforeend', html);
 }
 
