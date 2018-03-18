@@ -33,21 +33,25 @@ function showUser(user) {
 }
 
 function showComments(data) {
+    let commentsContainer = document.createElement('div');
+    document.getElementById("app").append(commentsContainer);
     let html = '';
     const commentsForPost = data.forEach(oneComment => {
         html += `
                 <li class="posts" style="background-color: lightgray">
-                    <span>Post ID: ${oneComment.postId}</span>
-                    <p><b>${oneComment.name}</b></p>
+                    <span>Comments for post ${oneComment.postId}</span>
+                    <p><b>Tittle: ${oneComment.name}</b></p>
                     <p>e-mail: ${oneComment.email}</p>
                     <p>${oneComment.body}</p>
                 </li>
             `;
     });
-    document.getElementById("app").insertAdjacentHTML('beforeend', html);
+    commentsContainer.innerHTML = html;
 }
 
 function showPost(post) {
+    let postContainer = document.createElement('div');
+    document.getElementById("app").append(postContainer);
     let htmlPost = `
             <li class="posts">
                 <a href="?userId=${post.userId}">
@@ -58,7 +62,7 @@ function showPost(post) {
             </li>
             <hr>
         `;
-    document.getElementById("app").innerHTML = htmlPost;
+    postContainer.innerHTML = htmlPost;
 }
 
 if (postId) {
