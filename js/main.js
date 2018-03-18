@@ -9,7 +9,7 @@ function showPosts(post) {
             <li class="posts">
                 <a href="?postId=${user.id}">
                 <span><b>ID:</b> ${user.id},</span></a>
-                <span><b>User ID:</b> ${user.userId}</span>
+                <a href="?userId=${user.userId}"><b>User ID:</b> ${user.userId}</a>
                 <p>Title:${user.title}</p>
                 <p>${user.body}</p>
             </li>
