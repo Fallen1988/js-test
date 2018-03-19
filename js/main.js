@@ -65,31 +65,20 @@ function showPost(post) {
     postContainer.innerHTML = htmlPost;
 }
 
+async function fetchAsync (url, fn) {
+    let response = await fetch(url);
+    if (response.ok) {
+        let data = await response.json();
+        await fn(data);
+    } else throw new Error(response.status);
+}
+
 if (postId) {
-    const users = [];
-    fetch('https://jsonplaceholder.typicode.com/posts/' + postId)
-        .then(response => response.json())
-        .then(data => {
-            showPost(data);
-            fetch('https://jsonplaceholder.typicode.com/posts/' + postId + '/comments')
-                .then(response => response.json())
-                .then(data => showComments(data))
-                .catch( () => alert('Comments not found'));
-        })
-        .catch( () => alert('Post is not found'));
+    fetchAsync('https://jsonplaceholder.typicode.com/posts/' + postId, showPost)
+        .then(() => fetchAsync('https://jsonplaceholder.typicode.com/posts/' + postId + '/comments', showComments));
 } else if(userId) {
-    fetch('https://jsonplaceholder.typicode.com/users/' + userId)
-        .then(response => response.json())
-        .then(data => showUser(data))
-        .catch( () => alert('User is not Found'));
+    fetchAsync('https://jsonplaceholder.typicode.com/users/' + userId, showUser);
 } else {
-    const posts = [];
-    fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json())
-        .then(data => {
-            posts.push(...data);
-            showPosts(posts);
-        })
-        .catch( () => alert('Posts are not found'));
+    fetchAsync('https://jsonplaceholder.typicode.com/posts', showPosts);
 }
 
