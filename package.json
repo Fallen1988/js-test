@@ -1,0 +1,20 @@
+{
+  "name": "hometask1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index",
+  "scripts": {
+    "start":"start http://127.0.0.1:8080 & static "
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "node-static": "^0.7.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fallen1988/js-test.git"
+  },
+  "author": "Orest Andrusyshyn",
+  "license": "ISC"
+}
